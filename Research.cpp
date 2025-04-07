@@ -8,6 +8,9 @@ TODO
 - Add Binary Search for early termination
 - Add Parallel computing for the merge steps
 - Finish the merge sort function
+- Add a file reading system to calculate data
+- Add output file as txt after finish sorting
+- Add timer to benchmark code
 */
 
 void merge(vector<int>& arr){
