@@ -9,6 +9,22 @@
 
 namespace fs = std::filesystem;
 
+/*
+TODO 
+- Add Binary Search for early termination | High Priority
+- Add Parallel computing for the merge steps | Medium Priority
+- Finish the merge sort function *Done*
+- Add a file reading system to calculate data | Low Priority
+- Add output file as txt after finish sorting | Medium Priority
+- Add timer to benchmark code | Low Priority
+- Move main.cpp into a header file |
+- create a new main.cpp file to handle the gui to pick 
+which data to use in testdata/file.txt file and which algorithm to use |
+- think more modularity
+- add feature to modify/create new file for sorted data
+*/
+
+
 int main(){
     std::string path = "testdata";
     std::vector<fs::path> options;

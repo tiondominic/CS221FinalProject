@@ -54,23 +54,3 @@ void enhancedMergeSort(vector<int>& A) {
         }
     }
 }
-
-// int main() {
-//     auto Numbers = read_file();
-    
-
-//     clock_t start = clock();
-
-// 	enhancedMergeSort(Numbers);
-
-// 	clock_t end = clock();
-
-
-//     double time_taken = double(end - start) / CLOCKS_PER_SEC;
-//     cout << fixed << setprecision(10);
-//     cout << "time taken: " << time_taken << endl;
-// 	cout << "Press Enter to exit..." << std::endl;
-//     cin.get(); 
-
-//     return 0;
-// }
