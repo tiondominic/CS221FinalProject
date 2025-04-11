@@ -1,2 +1,10 @@
-.vscode
-Research.exe
+.vscode/
+pythonscript.py
+/build/
+*/debug/
+*.exe
+main.exe
+*.o
+*.out
+*.obj
+*.log
