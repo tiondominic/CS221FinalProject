@@ -50,32 +50,18 @@ void sortVector(std::vector<int>& arr, int choice) {
             enhancedMergeSort(arr);
             writeToFile(arr, "enhancedMergeSort");
             break;
-        case 4:
-            std::cout << "Exiting...";
-            exit(0);
-            break;
-        default:
-            std::cout << "Invalid choice!" << std::endl;
-            return;
     }
 }
 
-
-int main(){
-    std::string path = "testdata";
-    std::vector<fs::path> options;
+void sorting(int number){
     int i=0;
-    int sortChoice;
+    std::vector<fs::path> options;
+    std::string path = "testdata";
 
     if (!fs::exists(path)) {
         fs::create_directory(path);
     }
 
-    std::cout << "1. MEMS\n2. MEMSB\n3. EMS\n4. Exit\nSelect: ";
-    std::cin >> sortChoice;
-    system("cls");
-
-    
     for(const auto& entry: fs::directory_iterator(path)){
 
         if (entry.is_regular_file() && entry.path().extension() == ".txt") {
@@ -94,16 +80,43 @@ int main(){
     std::cout << "Sorting...";
     auto start = std::chrono::high_resolution_clock::now();
     
-    sortVector(arr, sortChoice);
+    sortVector(arr, number);
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration<double>(end - start).count();
 
     system("cls");
 
     std::cout << "time taken: " << duration << endl;
-    std::cout << "Press Enter to exit..." << std::endl;
+    std::cout << "Press Enter to retry..." << std::endl;
     std::cin.ignore();
     std::cin.get(); 
+    system("cls");
+}
+
+int main(){
+    while(true){
+        int sortChoice;
+
+        std::cout << "1. MEMS\n2. MEMSB\n3. EMS\n4. Exit\nSelect: ";
+        std::cin >> sortChoice;
+        system("cls");
+
+        switch(sortChoice){
+            case 1:
+            case 2:
+            case 3:
+                sorting(sortChoice);
+                break;
+            case 4:
+                std::cout << "Exiting...";
+                exit(0);
+            default:
+                std::cout << "Invalid choice";
+                system("cls");
+
+        }
+    
+    }
     return 0;
 }
 
