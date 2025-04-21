@@ -1,8 +1,11 @@
 #include <iostream>
 #include <vector>
-#include "mems.h"
+#include <thread>
 
-std::vector<int> mems_merge(std::vector<int> Left, std::vector<int> Right) {
+#include "memsB.h"
+const int THREAD_THRESHOLD = 10000;
+
+std::vector<int> memsB_merge(std::vector<int> Left, std::vector<int> Right) {
     std::vector<int> result;
     int sizeL = Left.size();
     int sizeR = Right.size();
@@ -23,17 +26,33 @@ std::vector<int> mems_merge(std::vector<int> Left, std::vector<int> Right) {
     return result;
 }
 
-std::vector<int> mems(std::vector<int>& arr) {
+std::vector<int> memsB(std::vector<int>& arr) {
     int size = arr.size();
     if(size <= 1) {
         return arr;
     }
+
     int mid = size / 2;
     std::vector<int> leftHalf(arr.begin(), arr.begin() + mid);
     std::vector<int> rightHalf(arr.begin() + mid, arr.end());
-    
-    leftHalf = mems(leftHalf);
-    rightHalf = mems(rightHalf);
-    return mems_merge(leftHalf, rightHalf);
-}
 
+    std::vector<int> sortedLeft, sortedRight;
+
+    if (size >= THREAD_THRESHOLD) {
+        std::thread leftThread([&]() {
+            sortedLeft = memsB(leftHalf);
+        });
+
+        std::thread rightThread([&]() {
+            sortedRight = memsB(rightHalf);
+        });
+
+        leftThread.join();
+        rightThread.join();
+    } else {
+        sortedLeft = memsB(leftHalf);
+        sortedRight = memsB(rightHalf);
+    }
+
+    return memsB_merge(sortedLeft, sortedRight);
+}

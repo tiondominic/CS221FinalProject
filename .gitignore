@@ -8,5 +8,5 @@ main.exe
 *.out
 *.obj
 *.log
-testdata/*
-!testdata/.gitkeep
+testdata/
+output/
