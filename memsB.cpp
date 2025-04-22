@@ -4,7 +4,7 @@
 
 #include "memsB.h"
 const int THREAD_THRESHOLD = 10000;
-
+// NORMAL MERGE SORT WITH PARALLELISM
 std::vector<int> memsB_merge(std::vector<int> Left, std::vector<int> Right) {
     std::vector<int> result;
     int sizeL = Left.size();

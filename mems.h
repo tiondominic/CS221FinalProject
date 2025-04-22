@@ -3,9 +3,13 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>
+#include <ctime>
+#include <iomanip>
 
+using namespace std;
 
-std::vector<int> mems_merge(std::vector<int> Left, std::vector<int> Right);
-std::vector<int> mems(std::vector<int>& arr);
+void mems_merge(vector<int>& A, int L1, int R1, int L2, int R2);
+void mems(vector<int>& A);
 
 #endif

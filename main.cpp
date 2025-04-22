@@ -39,8 +39,8 @@ void sortVector(std::vector<int>& arr, int choice) {
 
     switch(choice) {
         case 1:
-            sortedArr = mems(arr); 
-            writeToFile(sortedArr, "mems");
+            mems(arr); 
+            writeToFile(arr, "mems");
             break;
         case 2:  
             sortedArr = memsB(arr);
