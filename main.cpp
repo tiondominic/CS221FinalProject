@@ -76,7 +76,9 @@ void sorting(int number){
     std::cin >> choice;
     system("cls");
 
+    std::cout << "Opening file...";
     std::vector<int> arr = read_file(options[choice-1]);
+    system("cls");
     std::cout << "Sorting...";
     auto start = std::chrono::high_resolution_clock::now();
     
