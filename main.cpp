@@ -3,12 +3,13 @@
 #include <fstream>
 #include <vector>
 #include <ctime>
-#include <fstream>
+#include <sstream>
 #include <filesystem>
 
 #include "file_reader.h"
 #include "mems.h"
 #include "memsB.h"
+#include "hmems.h"
 #include "EMSOriginal.h"
 
 namespace fs = std::filesystem;
@@ -49,6 +50,10 @@ void sortVector(std::vector<int>& arr, int choice) {
         case 3:  
             enhancedMergeSort(arr);
             writeToFile(arr, "enhancedMergeSort");
+            break;
+        case 4:  
+            hmems(arr);
+            writeToFile(arr, "hmems");
             break;
     }
 }
@@ -99,7 +104,7 @@ int main(){
     while(true){
         int sortChoice;
 
-        std::cout << "1. MEMS\n2. MEMSB\n3. EMS\n4. Exit\nSelect: ";
+        std::cout << "1. MEMS\n2. MEMSB\n3. EMS\n4. HMEMS\n5. Exit\nSelect: ";
         std::cin >> sortChoice;
         system("cls");
 
@@ -107,9 +112,10 @@ int main(){
             case 1:
             case 2:
             case 3:
+            case 4:
                 sorting(sortChoice);
                 break;
-            case 4:
+            case 5:
                 std::cout << "Exiting...";
                 exit(0);
             default:
@@ -124,9 +130,9 @@ int main(){
 
 /*
 TODO 
-- Add Binary Search for early termination | High Priority
+- Add Binary Search for early termination | Done
 - Add Parallel computing for the merge steps | Medium Priority
-- Finish the merge sort function *Done*
+- Finish the merge sort function | Done
 - Add a file reading system to calculate data | Low Priority
 - Add output file as txt after finish sorting | Medium Priority
 - Add timer to benchmark code | Low Priority
