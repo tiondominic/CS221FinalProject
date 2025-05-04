@@ -14,11 +14,11 @@
 
 namespace fs = std::filesystem;
 
-void writeToFile(const std::vector<int>& arr, const std::string& algorithmName) {
+void writeToFile(const std::vector<int>& arr, const std::string& algorithmName, int times) {
     std::filesystem::create_directory("output"); 
     
     std::stringstream filename;
-    filename << "output/" << algorithmName << "_sorted.txt";
+    filename << "output/" << algorithmName << times << "_sorted.txt";
     
     std::ofstream outFile(filename.str());  
     
@@ -35,25 +35,25 @@ void writeToFile(const std::vector<int>& arr, const std::string& algorithmName) 
 }
 
 
-void sortVector(std::vector<int>& arr, int choice) {
+void sortVector(std::vector<int>& arr, int choice, int times) {
     std::vector<int> sortedArr;
 
     switch(choice) {
         case 1:
             mems(arr); 
-            writeToFile(arr, "mems");
+            writeToFile(arr, "mems", times);
             break;
         case 2:  
             sortedArr = memsB(arr);
-            writeToFile(sortedArr, "memsB");
+            writeToFile(sortedArr, "memsB", times);
             break;
         case 3:  
             enhancedMergeSort(arr);
-            writeToFile(arr, "enhancedMergeSort");
+            writeToFile(arr, "enhancedMergeSort", times);
             break;
         case 4:  
             hmems(arr);
-            writeToFile(arr, "hmems");
+            writeToFile(arr, "hmems", times);
             break;
     }
 }
@@ -81,22 +81,31 @@ void sorting(int number){
     std::cin >> choice;
     system("cls");
 
+    int times;
+
+    std::cout << "Repeat amount: ";
+    std::cin >> times;
+
     std::cout << "Opening file...";
     std::vector<int> arr = read_file(options[choice-1]);
+
     system("cls");
     std::cout << "Sorting...";
-    auto start = std::chrono::high_resolution_clock::now();
-    
-    sortVector(arr, number);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration<double>(end - start).count();
 
-    system("cls");
+    for(int i=1; i <= times; i++){
+        auto start = std::chrono::high_resolution_clock::now();
+        
+        sortVector(arr, number, i);
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration<double>(end - start).count();
 
-    std::cout << "time taken: " << duration << endl;
+        std::cout << "Sort #" << i << " : " << duration << endl;
+    }
+
     std::cout << "Press Enter to retry..." << std::endl;
     std::cin.ignore();
     std::cin.get(); 
+
     system("cls");
 }
 
@@ -130,16 +139,5 @@ int main(){
 
 /*
 TODO 
-- Add Binary Search for early termination | Done
-- Add Parallel computing for the merge steps | Medium Priority
-- Finish the merge sort function | Done
-- Add a file reading system to calculate data | Low Priority
-- Add output file as txt after finish sorting | Medium Priority
-- Add timer to benchmark code | Low Priority
-- Move main.cpp into a header file |
-- create a new main.cpp file to handle the gui to pick 
-which data to use in testdata/file.txt file and which algorithm to use |
-- think more modularity
-- add feature to modify/create new file for sorted data
-- MODIFIED ENHANCED MERGESORT - MEMS
+All done
 */
