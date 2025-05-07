@@ -35,7 +35,7 @@ void writeToFile(const std::vector<int>& arr, const std::string& algorithmName, 
 }
 
 
-void sortVector(std::vector<int>& arr, int choice, int times) {
+void sortVector(std::vector<int> arr, int choice, int times) {
     std::vector<int> sortedArr;
 
     switch(choice) {
